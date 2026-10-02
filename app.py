@@ -1139,10 +1139,6 @@ def generate_questions_with_retry(subject, difficulty, num_q, content, max_retri
     """
     Call the Groq API with the best available model and retry up to max_retries
     times on parse/validation errors.
-
-    Model: llama-3.3-70b-versatile  (current supported successor to 3.1 70b)
-    Temperature: 0.4  (lower = more factually consistent)
-    max_tokens: 8192  (large enough for 50 questions with explanations)
     """
     prompt = build_prompt(subject, difficulty, num_q, content)
 
@@ -1162,7 +1158,7 @@ def generate_questions_with_retry(subject, difficulty, num_q, content, max_retri
     for attempt in range(1, max_retries + 1):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama-3.1-70b-versatile",
                 messages=[
                     {"role": "system", "content": system_msg},
                     {"role": "user",   "content": prompt},
