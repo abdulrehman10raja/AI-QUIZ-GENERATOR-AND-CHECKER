@@ -1158,7 +1158,7 @@ def generate_questions_with_retry(subject, difficulty, num_q, content, max_retri
     for attempt in range(1, max_retries + 1):
         try:
             resp = client.chat.completions.create(
-                model="llama-3.1-70b-versatile",
+                model="llama3-70b-8192",
                 messages=[
                     {"role": "system", "content": system_msg},
                     {"role": "user",   "content": prompt},
